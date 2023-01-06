@@ -29,4 +29,3 @@ insert
   into pet
 values ('성탄이', '안대혁', 'dog', 'm', '2007-12-25', null);
 
-select * from pet;
