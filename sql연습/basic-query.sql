@@ -6,7 +6,7 @@ select sin(pi() / 4), 1 + 2 * 3 - 4 / 5 from dual;
 -- 대소문자 구분 안한다.
 sElect VERSION(), current_DATE, NOW() froM dual;
 
--- table 생성: DML
+-- table 생성: DDL
 create table pet (
 	name varchar(100),
 	owner varchar(20),
@@ -20,7 +20,7 @@ create table pet (
 describe pet;
 desc pet;
 
--- table 삭제
+-- table 삭제: DDL
 drop table pet;
 show tables;
 
