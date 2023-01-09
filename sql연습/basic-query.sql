@@ -37,15 +37,67 @@ update pet
    set name='성타니'
  where name = '성탄이'; 
 
+update pet
+   set death = null
+ where name != 'Bowser'; 
+
 -- delete: DML(D)
 delete from pet where name = '성타니';
 
 -- load data
 load data local infile 'd:\pet.txt' into table pet;
 
--- select
+-- select 연습
 select name, species
   from pet
  where name = 'Bowser';
+ 
+select name, species
+  from pet
+ where birth >= '1998-01-01';
+ 
+select name, species, gender
+  from pet
+ where species = 'dog'
+   and gender = 'f';
 
+select name, species
+  from pet
+ where species = 'snake'
+    or species = 'bird';
 
+  select name, birth
+    from pet
+order by birth asc;
+
+  select name, birth
+    from pet
+order by birth desc;
+
+select name, birth, death
+  from pet
+ where death is not null; 
+
+select name
+  from pet
+ where name like 'b%'; 
+
+select name
+  from pet
+ where name like '%fy'; 
+
+select name
+  from pet
+ where name like '%w%';
+ 
+select name
+  from pet
+ where name like '_____';
+
+select name
+  from pet
+ where name like 'b____';
+ 
+ select count(*)
+   from pet;
+   
