@@ -45,5 +45,7 @@ select cast(cast(1-2 as unsigned) as integer) from dual;
 -- 정수: medium int, int(signed, integer), unsigned, big int 
 -- 실수: float, double
 -- 시간: date, datetime
--- LOB: CLOB, BLOB(Binary Large OBject) 
+-- LOB: CLOB, BLOB(Binary Large OBject)
+
+ 
 
