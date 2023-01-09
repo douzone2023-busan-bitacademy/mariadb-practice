@@ -6,7 +6,6 @@ select concat(first_name, ' ', last_name)
   from employees
  where emp_no = 10944; 
 
-
 -- 문제2. 
 -- 전체 직원의 다음 정보를 조회하세요.
 -- 가장 선임부터 출력이 되도록 하세요.
