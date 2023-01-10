@@ -69,16 +69,15 @@
       
 -- 문제8.
 -- 현재 평균급여가 50000이 넘는 직책을 직책, 급여로 급여가 큰 순서대로 출력하시오
-   select a.emp_no, c.title, b.salary
-     from employees a,
-		      salaries b,
-          titles c
+   select b.title, avg(a.salary)
+     from salaries a,
+          titles b
     where a.emp_no = b.emp_no
-      and a.emp_no = c.emp_no
-      and b.to_date = '9999-01-01'
-      and c.to_date - '9999-01-01'
-	  and b.salary > 50000
- order by b.salary desc;
+      and a.to_date = '9999-01-01'
+      and b.to_date - '9999-01-01'
+ group by b.title     
+   having avg(a.salary) > 50000
+ order by avg(a.salary) desc;
  
 -- 문제9.
 -- 현재, 부서별 평균 연봉을 연봉이 큰 부서 순서대로 출력하세요.
