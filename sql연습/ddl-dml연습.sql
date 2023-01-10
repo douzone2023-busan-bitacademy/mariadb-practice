@@ -27,6 +27,40 @@ desc member;
 alter table member drop juminbunho;
 desc member;
 
+-- insert
+ insert
+   into member
+ values (null, 'kickscar@gmail.com', password('1234'), '안대혁', '개발팀', null);
+ select * from member;
+ 
+ insert
+   into member(no, email, name, dept, password)
+ values (null, 'kickscar2@gmail.com', '안대혁', '개발팀', password('1234'));
+ select * from member;
+ 
+-- update
+update member
+   set email='kickscar3@gmail.com', password=password('5678')
+ where no = 2; 
+select * from member;
+ 
+-- delete
+delete
+  from member
+ where no = 2;
+select * from member;
 
+-- transaction
+select @@autocommit;
+set autocommit=0;
 
+ 
+insert
+  into member(no, email, name, dept, password)
+values (null, 'kickscar5@gmail.com', '안대혁5', '개발팀5', password('1234'));
+ 
+select * from member;
 
+commit;
+
+select * from member;
