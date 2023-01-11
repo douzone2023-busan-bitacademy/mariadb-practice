@@ -65,12 +65,12 @@ public class TxTest02 {
 			pstmt3.executeUpdate();
 			pstmt3.close();
 			
-			// end transaction
 			conn.commit();
 		} catch (SQLException e) {
-			// conn.rollback();
+			conn.rollback();
 			e.printStackTrace();
 		} finally {
+			// end transaction
 			conn.setAutoCommit(true);
 		}
 	}
