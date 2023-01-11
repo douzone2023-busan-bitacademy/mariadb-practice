@@ -68,8 +68,10 @@ public class TxTest02 {
 			// end transaction
 			conn.commit();
 		} catch (SQLException e) {
-			conn.rollback();
+			// conn.rollback();
 			e.printStackTrace();
+		} finally {
+			conn.setAutoCommit(true);
 		}
 	}
 }
