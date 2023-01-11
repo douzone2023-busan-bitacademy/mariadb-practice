@@ -2,15 +2,15 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class UpdateTest {
+public class UpdateTest02 {
 
 	public static void main(String[] args) {
 		DeptVo vo = new DeptVo();
 		vo.setNo(1L);
-		vo.setName("경영지원");
+		vo.setName("경영");
 		
 		Boolean result = update(vo);
 		System.out.println(result ? "성공" : "실패");
@@ -19,7 +19,7 @@ public class UpdateTest {
 	private static Boolean update(DeptVo vo) {
 		boolean result = false;
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		try {
 			//1. JDBC Driver Class 로딩
@@ -30,16 +30,20 @@ public class UpdateTest {
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			
 			//3. Statement 생성
-			stmt = conn.createStatement();
-			
-			//4. SQL 실행
 			String sql =
 				"update dept" + 
-				"   set name = '" + vo.getName() + "'" + 
-				" where no = " + vo.getNo();
-			int count = stmt.executeUpdate(sql);
+				"   set name = ?" + 
+				" where no = ?";
+			pstmt = conn.prepareStatement(sql);
 			
-			//5. 결과처리
+			//4. binding
+			pstmt.setString(1, vo.getName());
+			pstmt.setLong(2, vo.getNo());
+			
+			//5. SQL 실행
+			int count = pstmt.executeUpdate();
+			
+			//6. 결과처리
 			result = count == 1;
 			
 		} catch (ClassNotFoundException e) {
@@ -48,8 +52,8 @@ public class UpdateTest {
 			System.out.println("error:" + e);
 		} finally {
 			try {
-				if(stmt != null) {
-					stmt.close();
+				if(pstmt != null) {
+					pstmt.close();
 				}
 				
 				if(conn != null) {
