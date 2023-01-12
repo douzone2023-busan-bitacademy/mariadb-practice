@@ -51,6 +51,6 @@ public class Book {
 	}
 
 	public void print() {
-		System.out.println("책 제목:" + title + ", 작가:" + author + ", 대여 유무:" + (stateCode == 1 ? "재고있음" : "대여중"));
+		System.out.println("책 번호:" + bookNo + ", 책 제목:" + title + ", 작가:" + author + ", 대여 유무:" + (stateCode == 1 ? "재고있음" : "대여중"));
 	}
 }
