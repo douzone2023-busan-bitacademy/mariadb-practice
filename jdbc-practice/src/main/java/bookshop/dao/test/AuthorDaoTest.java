@@ -8,7 +8,7 @@ import bookshop.vo.AuthorVo;
 public class AuthorDaoTest {
 
 	public static void main(String[] args) {
-		// insertTest();
+		insertTest();
 		findAllTest();
 	}
 
@@ -51,5 +51,4 @@ public class AuthorDaoTest {
 		vo.setName("원수연");
 		dao.insert(vo);
 	}
-
 }

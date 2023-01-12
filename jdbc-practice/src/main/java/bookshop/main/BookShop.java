@@ -1,6 +1,4 @@
-ypackage bookshop.main;.
-
-
+package bookshop.main;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +16,10 @@ public class BookShop {
 		Long no = scanner.nextLong();
 		scanner.close();
 		
-		new BookDao().update(no, "대여중");
+		BookVo vo = new BookVo();
+		vo.setNo(no);
+		vo.setRent("Y");
+		new BookDao().update(vo);
 		
 		displayBookInfo();
 	}
@@ -28,7 +29,7 @@ public class BookShop {
 		
 		List<BookVo> list = new BookDao().findAll();
 		for(BookVo vo : list) {
-			String info = String.format("[%d] 제목: %s, 작가: %s, 대여유무: %s", vo.getNo(), vo.getTitle(), vo.getAuthorName(), vo.getStatus());
+			String info = String.format("[%d] 제목: %s, 작가: %s, 대여유무: %s", vo.getNo(), vo.getTitle(), vo.getAuthorName(), "Y".equals(vo.getRent()) ? "대여중" : "재고있음");
 			System.out.println(info);
 		}
 	}

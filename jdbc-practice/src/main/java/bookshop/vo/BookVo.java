@@ -3,9 +3,10 @@ package bookshop.vo;
 public class BookVo {
 	private Long no;
 	private String title;
-	private String status;
+	private String rent;
 	private Long authorNo;
 	private String authorName;
+	
 	public Long getNo() {
 		return no;
 	}
@@ -18,11 +19,11 @@ public class BookVo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getStatus() {
-		return status;
+	public String getRent() {
+		return rent;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setRent(String rent) {
+		this.rent = rent;
 	}
 	public Long getAuthorNo() {
 		return authorNo;
@@ -38,7 +39,7 @@ public class BookVo {
 	}
 	@Override
 	public String toString() {
-		return "BookVo [no=" + no + ", title=" + title + ", status=" + status + ", authorNo=" + authorNo
-				+ ", authorName=" + authorName + "]";
+		return "BookVo [no=" + no + ", title=" + title + ", rent=" + rent + ", authorNo=" + authorNo + ", authorName="
+				+ authorName + "]";
 	}
 }

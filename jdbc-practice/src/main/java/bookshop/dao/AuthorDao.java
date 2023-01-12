@@ -20,14 +20,10 @@ public class AuthorDao {
 		
 		try {
 			conn = getConnection();
-			
-			//3. SQL 준비
+
 			String sql = "select no, name from author";
 			pstmt = conn.prepareStatement(sql);
-			
-			//4. 바인딩(binding)
-			
-			//5. SQL 실행
+
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Long no = rs.getLong(1);
@@ -42,7 +38,6 @@ public class AuthorDao {
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		} finally {
-			// clean up
 			try {
 				if(rs != null) {
 					rs.close();
@@ -61,25 +56,19 @@ public class AuthorDao {
 		return result;
 	}
 	
-	public boolean insert(AuthorVo vo) {
-		boolean result = false;
+	public void insert(AuthorVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = getConnection();
-			
-			//3. SQL 준비
+
 			String sql = "insert into author values(null, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
-			//4. 바인딩(binding)
 			pstmt.setString(1, vo.getName());
 			
-			//5. SQL 실행
-			int count = pstmt.executeUpdate();
-			
-			result = count == 1;
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		} finally {
@@ -95,18 +84,14 @@ public class AuthorDao {
 				e.printStackTrace();
 			}
 		}
-		
-		return result;
 	}
 	
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {
-			// 1. JDBC Driver 로딩
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			// 2. 연결하기
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
+			String url = "jdbc:mariadb://192.168.10.125:3307/webdb?charset=utf8";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);
